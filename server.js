@@ -14,8 +14,8 @@ const app = express();
 app.use(express.static(__dirname + '/public'));
 
 app.use('/api/photos', async (req, res) => {
-  const recordCount = 10;
-  const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${process.env.UNSPLASH_API_KEY}&count=${recordCount}&content_filter=high`;
+  const { count } = req.query;
+  const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${process.env.UNSPLASH_API_KEY}&count=${count}&content_filter=high`;
 
   try {
     const response = await fetch(apiUrl);
